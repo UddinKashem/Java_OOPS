@@ -3,7 +3,6 @@ package collection.list;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 /*
  * An ArrayList is like a resizable array.
  * It is part of the java.util package and implements the List interface.
@@ -60,8 +59,6 @@ public class TestArrayList {
 		fList.add(123.45);
 		fList.add(321.0);
 		fList.add(234.);
-		System.out.println(fList);
-		
+		System.out.println(fList);		
 		}
-
 }
