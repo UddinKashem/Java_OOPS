@@ -1,0 +1,41 @@
+package javastring;
+
+import java.util.*;
+
+/*
+ * write a java code to cover the string as first and last character of each word with uppercase
+ */
+
+public class StringWordFormatter {
+
+	public static void main(String[] args) {
+
+		System.out.println("Java String format.....");
+		String str = "Use this editor to write, compile and run your Java code online";
+		System.out.println(formatsWords(str));
+	}
+	
+	public static String formatsWords(String str){
+		
+		String[] aStr = str.split(" ");
+		
+		StringBuilder sb = new StringBuilder();
+		for(String st : aStr){
+			if(st.length() == 1){
+				//Single character word.
+				sb.append(st.toUpperCase()).append(" ");
+			}else{
+				//First + Middle + Last
+				char first = Character.toUpperCase(st.charAt(0));
+				char last = Character.toUpperCase(st.charAt(st.length()-1));
+				String middle = st.substring(1,st.length()-1);
+				
+				sb.append(first).append(middle).append(last).append(" ");
+			}
+		}
+		
+		return sb.toString().trim();
+	}
+	
+
+}
