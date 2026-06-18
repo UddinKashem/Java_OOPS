@@ -1,0 +1,86 @@
+package exceptionshandling;
+
+/*
+ * Types of Java Expceptions:
+Java defines several types of exceptions that relate to its various class libraries. Java also allows userss to define their it's exceptions.
+
+Types of Exceptions;
+1. User-defined Exception
+2. Built-in Exception:
+	i). Checked Exceptions:
+		-> ClassNotFoundException
+		-> InterruptedException
+		-> IOException
+		-> InstantiattionException
+		-> SQLException
+		-> FileNotFouundException
+
+	ii). Unchecked Exceptions:
+		-> ArithmeticException
+		-> ClassCastException
+		-> NullPointerException
+		-> ArrayIndexOutOfBoundsException
+		-> ArrayStoreException
+		-> IllegalThreadStateException
+ */
+import java.io.*;
+
+	class InvalidAgeException extends Exception{
+		public InvalidAgeException(String message){
+			super(message);
+		}
+	}
+	
+public class JavaExceptions {
+	public static void main(String[] args) throws InvalidAgeException {
+		try{
+			//1. ArithmeticException (Unchecked Exceptions)
+			int cal = 10/0;
+			//System.out.println("Print result: "+ cal);
+			
+			//2. ArrayIndexOutOfBoundsException (Unchecked Exceptions)
+			int[] iArr = {1,4,7,9};
+			System.out.println(iArr[6]);
+			
+			//3. NumberFormatException (Unchecked Exceptions)
+			int n = Integer.parseInt("xyz");
+			//System.out.println("Result: "+ n);
+			
+			//4. FileNotFoundException (Checked Exceptions)
+			FileReader fr = new FileReader("someFile.txt");
+			
+            // 5. Custom Exception
+            validateAge(15);
+			
+		}
+		catch (ArithmeticException e){
+			System.out.println("Arithmetic Error: "+ e.getMessage());
+		}
+		catch (ArrayIndexOutOfBoundsException e){
+			System.out.println("Array Index Error: "+e.getMessage());
+		}
+		catch (NumberFormatException e){
+			System.out.println("Number Format Error: "+e.getMessage());
+		}
+		catch (FileNotFoundException e){
+			System.out.println("File Not Found Error: "+e.getMessage());
+		}
+        catch (InvalidAgeException e) {
+            System.out.println("Custom Exception: " + e.getMessage());
+        }
+		catch (Exception e){
+			//Catch-all for anything unexpected:
+			System.out.println("General Error: "+e.getMessage());
+		}
+		finally{
+			System.out.println("Finally block executed - cleanup done.");
+		}
+	}
+	
+	public static void validateAge(int age) throws InvalidAgeException{
+		if(age<18){
+			throw new InvalidAgeException("Age must be 18 or above.");
+		}
+	}
+
+}
