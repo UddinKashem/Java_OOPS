@@ -1,0 +1,64 @@
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        String str = "Machine Learning (ML) is a subset of artificial intelligence focused on building systems that learn patterns from data to make predictions or decisions without being explicitly programmed. Rather than writing strict rule-based code, developers feed data into ML algorithms that mathematically optimize their parameters to minimize error.The discipline has transitioned from classical statistical modeling to large-scale deep learning architectures that drive modern agentic workflows, autonomous systems, and generative applications.";
+    
+        System.out.println("Length of the String: "+str.length());
+    
+        //removing the '.' from the string.
+        str = str.replaceAll("\\.","");
+        System.out.println("Length of String without '.': "+str.length());
+        
+        //removing the '-' from the string.
+        str = str.replaceAll("\\-","");
+        System.out.println("Length of String without '-': "+str.length());
+        
+        //removing the ',' from the string.
+        str = str.replaceAll(",","");
+        System.out.println("Length of String without ',': "+str.length());
+    
+        String[] sArr = str.split(" ");
+        System.out.println("Length of String Array: "+sArr.length);
+        
+        HashMap<String, Integer> strMap = new HashMap<>();
+        for(String st : sArr){
+            //System.out.print("'"+st+"' ");
+            strMap.put(st, strMap.getOrDefault(st,0)+1);
+        }
+       // System.out.println("String Map: "+ strMap);
+        
+        //removing the Space'' from the string.
+        str = str.replaceAll(" ","");
+        System.out.println("Length of String without 'Space': "+str.length());
+        
+        HashMap<Character,Integer> charMap = new HashMap<>();
+        for(char ch : str.toCharArray()){
+            charMap.put(ch, charMap.getOrDefault(ch,0)+1);
+        }
+        
+        Set<Map.Entry<Character,Integer>> entrySet = charMap.entrySet();
+        
+        List<Character> cList = new ArrayList<>();
+        List<Integer> iList = new ArrayList<>();
+        int count = 0;
+        int countLs = 0;
+        
+        for(Map.Entry<Character,Integer> entry : entrySet){
+            if(entry.getValue()>10){
+                System.out.printf("%s : %d %n",entry.getKey(), entry.getValue());
+                cList.add(entry.getKey());
+                iList.add(entry.getValue());
+                count += entry.getValue(); 
+            }
+            if(entry.getValue()<=10){
+                countLs += entry.getValue();
+            }
+        }
+        
+        System.out.println("List of char appear more than 10 times: "+cList);
+        System.out.println("List of occur number more than 10 times: "+ iList);
+        System.out.println("Total char count appear more than 10 times: "+count);
+        System.out.println("Total char count appear lessthan 10 times: "+countLs);
+    }
+}
