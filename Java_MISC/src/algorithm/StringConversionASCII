@@ -1,0 +1,82 @@
+package algorithom.solutions;
+
+import java.util.*;
+
+public class StringConversionASCII {
+
+	public static void main(String[] args) {
+
+		String str = "Java Threads allows a program to operate more efficiently by doing multiple things at the same time. Threads can be used to perform complicated tasks in the background without interrupting the main program.";
+		System.out.println("Original String: " + str);
+		System.out.println("Length of String: " + str.length());
+		strConverstion(str);
+	}
+
+	// Method: Convert String to Char Array and ASCII value:
+	public static void strConverstion(String str) {
+		char[] cArr = str.toCharArray();
+
+		Set<Character> cSet = new LinkedHashSet<>();
+		List<Character> cList = new ArrayList<>();
+		List<Integer> iList = new ArrayList<>();
+
+		for (int i = cArr.length - 1; i >= 0; i--) {
+			if (cSet.add(cArr[i])) {
+				cList.add(cArr[i]);
+				 System.out.println("["+cArr[i]+"] ASCII Value:"+(int)(cArr[i]));
+				iList.add((int) (cArr[i]));
+			}
+		}
+		System.out.println("Unique Character Set from String: " + cSet);
+		System.out.println("Length of Unique Character List from string: " + cList.size());
+		System.out.println("Unique Character List from string: " + cList);
+
+		Collections.reverse(cList);
+		System.out.println("Reverse Unique Char list: " + cList);
+
+		System.out.println("List of ASCII value of Character Set: " + iList);
+		// Collections.sort(iList);
+		List<Integer> ascList = sortNumber(iList);
+		System.out.println("Assending order of ASCII Values: " + ascList);
+		evenAndOdd(iList);
+	}
+
+	// Method: Sort Integer List
+	public static List<Integer> sortNumber(List<Integer> sList) {
+
+		int n = sList.size();
+
+		for (int i = 0; i < n - 1; i++) {
+			for (int j = 0; j < n - i - 1; j++) {
+				// Compare adjacent elements
+				if (sList.get(j) > sList.get(j + 1)) {
+					// Swap elements if they are in the wrong order
+					int temp = sList.get(j);
+					sList.set(j, sList.get(j + 1));
+					sList.set(j + 1, temp);
+				}
+			}
+		}
+		return sList;
+	}
+
+	// Method for Enven and Odd Number from the list.
+	public static void evenAndOdd(List<Integer> nList) {
+		int countEven = 0;
+		int countOdd = 0;
+
+		for (int n : nList) {
+			if (n % 2 == 0) {
+				// System.out.println(n + " ' is a Even Number.");
+				countEven += 1;
+			} else {
+				// System.out.println(n + " ' is a Odd Number.");
+				countOdd += 1;
+			}
+		}
+
+		System.out.println("Even number in the List: " + countEven);
+		System.out.println("Odd Number in the List: " + countOdd);
+	}
+
+}
